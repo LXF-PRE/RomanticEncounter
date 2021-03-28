@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="js/common.js" ></script>
+	<script>
+        //
+        var config = [
+            {
+                width: 400,
+                top: 20,
+                left: 50,
+                opacity: 0.2,
+                zIndex: 2
+            },//0
+            {
+                width: 600,
+                top: 70,
+                left: 0,
+                opacity: 0.8,
+                zIndex: 3
+            },//1
+            {
+                width: 800,
+                top: 100,
+                left: 200,
+                opacity: 1,
+                zIndex: 4
+            },//2
+            {
+                width: 600,
+                top: 70,
+                left: 600,
+                opacity: 0.8,
+                zIndex: 3
+            },//3
+            {
+                width: 400,
+                top: 20,
+                left: 750,
+                opacity: 0.2,
+                zIndex: 2
+            }//4
+ 
+        ];
+        //页面加载事件
+        window.onload = function () {
+            var flag = true;//假设所有的动画都执行完毕
+            //图片散开
+            var list = my$("slide").getElementsByTagName("li");
+ 
+            function assign() {
+                for (var i = 0; i < list.length; i++) {
+                    animate(list[i], config[i], function () {
+                        flag = true;
+                    });
+                }
+            }
+ 
+            assign();
+ 
+            //鼠标进入，左右焦点显示
+            my$("slide").onmouseover = function () {
+                animate(my$("arrow"), {"opacity": 1});
+            };
+            //鼠标进入，左右焦点隐藏
+            my$("slide").onmouseout = function () {
+                animate(my$("arrow"), {"opacity": 0});
+            };
+            //左按钮点击事件
+            my$("arrLeft").onclick = function () {
+                if (flag) {
+                    flag = false;
+                    config.unshift(config.pop());
+                    assign();
+                }
+            };
+            //右按钮点击事件
+            my$("arrRight").onclick = function () {
+                if (flag) {
+                    flag = false;
+                    config.push(config.shift());
+                    assign();//重新分配
+                }
+            };
+        };
+    </script>
+ 
+</head>
+<body>
+	<div class="wrap" id="wrap" name="top">
+	    <div class="slide" id="slide">
+	        <ul>
+	            <li><a href="#"><img  src="img/618Posters3A.jpg"></a></li>
+	            <li><a href="#"><img  src="img/618Posters4a.jpg"></a></li>
+	            <li><a href="#"><img  src="img/8.5Posters1.jpg"></a></li>
+	            <li><a href="#"><img  src="img/8.5Posters2a.jpg"></a></li>
+	            <li><a href="#"><img  src="img/8.5Posters2a.jpg"></a></li>
+	            <li><a href="#"><img  src="img/618Posters3A.jpg"></a></li>
+	        </ul>
+	        <div class="arrow" id="arrow">
+	            <a href="javascript:;" class="prev" id="arrLeft"></a>
+	            <a href="javascript:;" class="next" id="arrRight"></a>
+	        </div>
+	    </div>
+	</div>
+	<div style="position: absolute; top: 1300px;width: 122%;margin-bottom: 500px;bottom: 500px;">
+		<div>
+			<h1 style="display: flex;justify-content: center; margin-bottom: 80px;letter-spacing:3px">海报设计</h1>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Posters1.jpg" ><img  src="img/Posters1.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Posters2.jpg"><img  src="img/Posters2.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Posters3.jpg" ><img  src="img/Posters3.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Posters4.jpg"><img  src="img/Posters4.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Posters5.jpg" ><img  src="img/Posters5.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Posters6.jpg"><img  src="img/Posters6.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Posters7.jpg"><img  src="img/Posters7.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Posters8.jpg" ><img  src="img/Posters8.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Posters9.jpg"><img  src="img/Posters9.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Posters10.jpg"><img  src="img/Posters10.jpg" style="width: 100%;"></a>
+			</div>
+		</div>
+		
+		<div>
+			<h1 style="display: flex;justify-content: center;margin-top: 80px; margin-bottom: 80px;letter-spacing:3px">详情页设计</h1>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Details1.jpg" ><img  src="img/Details1.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Details2.PNG"><img  src="img/Details2.PNG" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Details3.jpg" ><img  src="img/Details3.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Details4.jpg"><img  src="img/Details4.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Details5.jpg" ><img  src="img/Details5.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Details6.jpg"><img  src="img/Details6.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Details7.jpg"><img  src="img/Details7.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Details8.jpg" ><img  src="img/Details8.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Details9.jpg"><img  src="img/Details9.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Details10.jpg"><img  src="img/Details10.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Details11.jpg"><img  src="img/Details11.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+				<a href="details.html?details=Details12.jpg" ><img  src="img/Details12.jpg" style="width: 100%;"></a>
+			</div>
+			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
+				<a href="details.html?details=Details13.jpg"><img  src="img/Details13.jpg" style="width: 100%;"></a>
+			</div>
+		</div>
+		
+		<div>
+			<h1 style="display: flex;justify-content: center;margin-top: 80px; margin-bottom: 80px;letter-spacing:3px">小精心</h1>
+			<marquee>
+				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+					<a href="details.html?details=_MG_4109.jpg" ><img  src="img/_MG_4109.jpg" style="width: 100%;"></a>
+				</div>
+				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+					<a href="details.html?details=_MG_4268.jpg" ><img  src="img/_MG_4268.jpg" style="width: 100%;"></a>
+				</div>
+				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+					<a href="details.html?details=_MG_4399.jpg" ><img  src="img/_MG_4399.jpg" style="width: 100%;"></a>
+				</div>
+				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+					<a href="details.html?details=_MG_4431.jpg" ><img  src="img/_MG_4431.jpg" style="width: 100%;"></a>
+				</div>
+				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+					<a href="details.html?details=_MG_4439.jpg" ><img  src="img/_MG_4439.jpg" style="width: 100%;"></a>
+				</div>
+				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
+					<a href="details.html?details=_MG_4547.jpg" ><img  src="img/_MG_4547.jpg" style="width: 100%;"></a>
+				</div>
+			</marquee>
+		</div>
+		
+		<div style="display: flex;justify-content: center;margin-top: 80px;height: 500px;">
+			<a href="#top"  style="text-decoration: none;"><div style="padding: 20px 100px;border: 1px solid #666666;border-radius: 10px;">返回顶部</div></a>
+		</div>
+	</div>	
+</body>
+</html>
