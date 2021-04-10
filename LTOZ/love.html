@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>L LOVE Z</title>
+<link rel="shortcut icon" href="img/love.png">
+
+<style type="text/css">
+@font-face {
+	font-family: digit;
+	src: url('digital-7_mono.ttf') format("truetype");
+}
+</style>
+
+<link href="css/like.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/love.js"></script>
+<script type="text/javascript" src="js/like.js"></script>
+
+</head>
+
+<body>
+
+<div id="mainDiv">
+	<div id="content">
+		<div id="code">
+			<span class="comments">/**</span><br />
+			<span class="space"/><span class="comments">*2021—04-9,</span><br />
+			<span class="space"/><span class="comments">*2021-04-10.</span><br />
+			<span class="space"/><span class="comments">*/</span><br />
+			Boy name = <span class="keyword">Mr</span> LXF<br />
+			Girl name = <span class="keyword">Mrs</span> HZ<br />
+			<span class="comments">// They met. </span><br />
+			They know the;<br />
+			<span class="comments">// The boy love the girl.</span><br />
+			The boy to the girl;<br />
+			<span class="comments">// AS time goes on.</span><br />
+			The boy love the girl more and more;<br />
+			<span class="comments">// At the same time.</span><br />
+			The girl slowly to like the boy;<br />
+			<span class="comments">// From winter to summer.</span><br />
+			<span class="comments">// To know each other daily in the morning to night.</span><br />
+			<span class="keyword">The boy</span> very <span class="keyword">happy</span>;<br />
+			<span class="keyword">The girl</span> is also very <span class="keyword">happy</span>;<br />
+			<span class="placeholder"/><span class="comments">// Whether it is right now</span><br />
+			<span class="placeholder"/><span class="comments">// Still in the distant future.</span><br />
+			<span class="placeholder"/>The boy has but one dream;<br />
+			<span class="comments">// The boy wants the girl could well have been happy.</span><br />
+			<br>
+			<br>
+			I want to say:<br />
+			Zhen, Like you is my most lucky thing;<br />
+		</div>
+		<div id="loveHeart">
+			<canvas id="garden"></canvas>
+			<div id="words">
+				<div id="messages">
+					贞，这是我们相知一起经历的时光。
+					<div id="elapseClock"></div>
+				</div>
+				<div id="loveu">
+					想一直这样喜欢着你。<br/>
+					<div class="signature">- The boy like you</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="copyright">
+		<a href="#">....</a><br />
+		<a href="#">....</a><br />
+		
+	</div>
+</div>
+
+<script type="text/javascript">
+var offsetX = $("#loveHeart").width() / 2;
+var offsetY = $("#loveHeart").height() / 2 - 55;
+var together = new Date();
+together.setFullYear(2020,12 , 20);//需比实际少一月，实际是2021.1.20
+together.setHours(20);
+together.setMinutes(52);
+together.setSeconds(0);
+together.setMilliseconds(0);
+//alert(together);
+if (!document.createElement('canvas').getContext) {
+	var msg = document.createElement("div");
+	msg.id = "errorMsg";
+	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+	document.body.appendChild(msg);
+	$("#code").css("display", "none")
+	$("#copyright").css("position", "absolute");
+	$("#copyright").css("bottom", "10px");
+	document.execCommand("stop");
+} else {
+	setTimeout(function () {
+		startHeartAnimation();
+	}, 5000);
+
+	timeElapse(together);
+	setInterval(function () {
+		timeElapse(together);
+	}, 500);
+
+	adjustCodePosition();
+	$("#code").typewriter();
+}
+</script>
+
+</body>
+</html>
