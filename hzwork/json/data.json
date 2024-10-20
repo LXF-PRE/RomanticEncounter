@@ -1,0 +1,135 @@
+{
+	"ssssss": "//histogram矩形，carousel轮播，marquee循环播放",
+	"home": {
+		"type": "carousel",
+		"url": "home",
+		"list": ["1.jpg", "2.jpg", "3.jpg"]
+	},
+	"middle": [{
+			"type": "histogram",
+			"list": [{
+					"title": {
+						"name": "海报设计",
+						"background": "#fae7d8",
+						"color": "#000"
+					},
+					"url": "posters",
+					"list": [{
+						"img": "1.jpg",
+						"direction": "1"
+					}, {
+						"img": "2.jpg",
+						"direction": "2"
+					}, {
+						"img": "3.jpg",
+						"direction": ""
+					}, {
+						"img": "4.jpg",
+						"direction": ""
+					}, {
+						"img": "5.jpg",
+						"direction": ""
+					}, {
+						"img": "6.jpg",
+						"direction": ""
+					}],
+					"background": "#fae7d8",
+					"border": "red",
+					"height": "44",
+					"type": "overturn"
+				},
+				{
+					"title": {
+						"name": "主图图标",
+						"background": "#fae7d8",
+						"color": "#000"
+					},
+					"url": "master",
+					"list": ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+					"height": "35.5",
+					"background": "#fae7d8",
+					"border": "red"
+				},
+				{
+					"title": {
+						"name": "首页设计",
+						"background": "#fae7d8",
+						"color": "#000"
+					},
+					"url": "mian",
+					"height": "34",
+					"background": "#fae7d8",
+					"border": "red",
+					"list": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg",
+						"10.jpg", "11.jpg", "12.jpg"
+					]
+				},
+				{
+					"title": {
+						"name": "详情页设计",
+						"background": "#fae7d8",
+						"color": "#000"
+					},
+					"url": "detail",
+					"height": "110",
+					"background": "#fae7d8",
+					"border": "red",
+					"list": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"]
+				}
+			]
+		},
+		{
+			"type": "marquee",
+			"title": {
+				"name": "白底图",
+				"background": "#fae7d8",
+				"color": "#000"
+			},
+			"url": "opaque",
+			"list": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg"]
+		},
+		{
+			"type": "histogram",
+			"list": [{
+				"title": {
+					"name": "护肤品海报",
+					"background": "#fae7d8",
+					"color": "#000"
+				},
+				"url": "skin",
+				"height": "49",
+				"background": "#fae7d8",
+				"border": "red",
+				"list": ["1.jpg", "2.jpg"]
+			}]
+		},
+		{
+			"type": "histogram",
+			"list": [{
+					"title": {
+						"name": "茶叶包装设计",
+						"background": "#fae7d8",
+						"color": "#000"
+					},
+					"url": "package",
+					"height": "46",
+					"background": "#fae7d8",
+					"border": "red",
+					"list": ["1.jpg", "2.jpg", "3.jpg", "4.jpg"]
+				},
+				{
+					"title": {
+						"name": "美食菜单排版设计",
+						"background": "#fae7d8",
+						"color": "#000"
+					},
+					"url": "menu",
+					"height": "30",
+					"background": "#fae7d8",
+					"border": "red",
+					"list": ["1.jpg", "2.jpg"]
+				}
+			]
+		}
+	]
+}

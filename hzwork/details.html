@@ -2,23 +2,39 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>作品小收集</title>
 	</head>
+	<script src="https://warehouse-lxf.gitee.io/develop/js/jquery-1.10.2.min.js"></script>
+	<script src="https://warehouse-lxf.gitee.io/develop/js/jsrender/jsrender.1.0.11.min.js" type="text/javascript"></script>
+		
 	<body>
-		<div id="detailsimg" style="background:#FFFFFF;">
-			
-		</div>
-		<div style="display: flex;justify-content: center;margin-top: 80px;background:#FFFFFF;">
-			<a href="index.html" style="text-decoration: none;"><div style="padding: 20px 100px;border: 1px solid #666666;border-radius: 10px;">返回首页</div></a>
-		</div>
+		<div class="boxTem"></div>
 	</body>
+	<script type="text/x-jsrender" id="j-specCard">
+		<div id="detailsimg" style="background:#FFFFFF;"></div>
+		<div style="display: flex;justify-content: center;margin-top: 80px;background:#FFFFFF;">
+			<a href="{{:href1 }}" style="text-decoration: none;"><div style="padding: 20px 100px;border: 1px solid #666666;border-radius: 10px;">返回首页</div></a>
+		</div>
+	</script>
 	<script type="application/javascript">
 		function getQueryString(name) { 
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
 			var r = window.location.search.substr(1).match(reg); 
 			if (r != null) return unescape(r[2]); return null;
-		} 
-		var detailsimg = document.getElementById("detailsimg");
-		detailsimg.innerHTML='<img src="img/'+getQueryString("details")+'" style="width: 98%;margin-left: 1%;"/>';
+		}
+		var data={}
+		window.onload = function() {
+			data.href1="./index.html#"+getQueryString("middleId")
+			$.views.settings.allowCode(true);
+			//获取模板
+			jsRenderTpl = $.templates({
+				markup: "#j-specCard",
+				allowCode: true
+			}),
+			console.log(data);
+			$('.boxTem').html(jsRenderTpl(data));
+			var detailsimg = document.getElementById("detailsimg");
+			detailsimg.innerHTML='<img src="'+getQueryString("details")+'" style="width: 98%;margin-left: 1%;"/>';
+		}
 	</script>
 </html>

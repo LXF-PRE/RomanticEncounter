@@ -4,102 +4,148 @@
 		<meta charset="utf-8" />
 		<title>作品小收集</title>
 	</head>
+	<script src="https://warehouse-lxf.gitee.io/develop/js/jquery-1.10.2.min.js"></script>
+	<script src="https://warehouse-lxf.gitee.io/develop/js/jsrender/jsrender.1.0.11.min.js" type="text/javascript">
+	</script>
 	<link rel="stylesheet" href="css/style.css" />
-	<script type="text/javascript" src="js/common.js" ></script>
+	<script type="text/javascript" src="js/common.js"></script>
 	<script>
-        //
-        var config = [
-            {
-                width: 400,
-                top: 20,
-                left: 50,
-                opacity: 0.2,
-                zIndex: 2
-            },//0
-            {
-                width: 600,
-                top: 70,
-                left: 0,
-                opacity: 0.8,
-                zIndex: 3
-            },//1
-            {
-                width: 800,
-                top: 100,
-                left: 200,
-                opacity: 1,
-                zIndex: 4
-            },//2
-            {
-                width: 600,
-                top: 70,
-                left: 600,
-                opacity: 0.8,
-                zIndex: 3
-            },//3
-            {
-                width: 400,
-                top: 20,
-                left: 750,
-                opacity: 0.2,
-                zIndex: 2
-            }//4
- 
-        ];
-        //页面加载事件
-        window.onload = function () {
-            var flag = true;//假设所有的动画都执行完毕
-            //图片散开
-            var list = my$("slide").getElementsByTagName("li");
- 
-            function assign() {
-                for (var i = 0; i < list.length; i++) {
-                    animate(list[i], config[i], function () {
-                        flag = true;
-                    });
-                }
-            }
- 
-            assign();
- 
-            //鼠标进入，左右焦点显示
-            my$("slide").onmouseover = function () {
-                animate(my$("arrow"), {"opacity": 1});
-            };
-            //鼠标进入，左右焦点隐藏
-            my$("slide").onmouseout = function () {
-                animate(my$("arrow"), {"opacity": 0});
-            };
-            //左按钮点击事件
-            my$("arrLeft").onclick = function () {
-                if (flag) {
-                    flag = false;
-                    config.unshift(config.pop());
-                    assign();
-                }
-            };
-            //右按钮点击事件
-            my$("arrRight").onclick = function () {
-                if (flag) {
-                    flag = false;
-                    config.push(config.shift());
-                    assign();//重新分配
-                }
-            };
-        };
-    </script>
- 
-</head>
-<body>
-	<div class="wrap" id="wrap" name="top">
+		
+		//
+		var config = [{
+				width: 400,
+				top: 20,
+				left: 50,
+				opacity: 0.2,
+				zIndex: 2
+			}, //0
+			{
+				width: 600,
+				top: 70,
+				left: 0,
+				opacity: 0.8,
+				zIndex: 3
+			}, //1
+			{
+				width: 800,
+				top: 100,
+				left: 200,
+				opacity: 1,
+				zIndex: 4
+			}, //2
+			{
+				width: 600,
+				top: 70,
+				left: 600,
+				opacity: 0.8,
+				zIndex: 3
+			}, //3
+			{
+				width: 400,
+				top: 20,
+				left: 750,
+				opacity: 0.2,
+				zIndex: 2
+			} //4
+
+		];
+
+		var data = {}
+
+
+		//页面加载事件
+		function onloadDb() {
+
+			var flag = true; //假设所有的动画都执行完毕
+			//图片散开
+			var list = my$("slide").getElementsByTagName("li");
+
+			function assign() {
+				for (var i = 0; i < list.length; i++) {
+					animate(list[i], config[i], function() {
+						flag = true;
+					});
+				}
+			}
+
+			assign();
+
+			//鼠标进入，左右焦点显示
+			my$("slide").onmouseover = function() {
+				animate(my$("arrow"), {
+					"opacity": 1
+				});
+			};
+			//鼠标进入，左右焦点隐藏
+			my$("slide").onmouseout = function() {
+				animate(my$("arrow"), {
+					"opacity": 0
+				});
+				console.log()
+			};
+			//左按钮点击事件
+			my$("arrLeft").onclick = function() {
+				if (flag) {
+					flag = false;
+					config.unshift(config.pop());
+					assign();
+				}
+			};
+			//右按钮点击事件
+			my$("arrRight").onclick = function() {
+				if (flag) {
+					flag = false;
+					config.push(config.shift());
+					assign(); //重新分配
+				}
+			};
+		};
+
+		window.onload = function() {
+			let that = this
+			$.getJSON("json/data.json", function(e) {
+				that.data = e
+				that.setTemplates("#j-specCard", '#boxTem', e)
+				that.setTemplates("#j-specCard1", '.cubeBox48Tem')
+				onloadDb()
+				scrollToElement()
+			});
+
+		}
+		//设置模板
+		function setTemplates(markup, temName, data) {
+			$.views.settings.allowCode(true);
+			//获取模板
+			let jsRenderTpl = $.templates({
+				markup: markup,
+				allowCode: true
+			})
+
+			$(temName).html(jsRenderTpl(data));
+		}
+
+		function scrollToElement() {
+			let hash = window.location.hash;
+			var element = document.getElementById(hash.substring(1));
+			if (element) {
+				element.scrollIntoView({
+					behavior: 'smooth'
+				});
+			}
+		}
+	</script>
+
+	</head>
+	<body>
+		<div id="boxTem"></div>
+	</body>
+	<script type="text/x-jsrender" id="j-specCard">
+		<div class="wrap" id="wrap" name="top">
 	    <div class="slide" id="slide">
 	        <ul>
-	            <li><a href="#"><img  src="img/618Posters3A.jpg"></a></li>
-	            <li><a href="#"><img  src="img/618Posters4a.jpg"></a></li>
-	            <li><a href="#"><img  src="img/8.5Posters1.jpg"></a></li>
-	            <li><a href="#"><img  src="img/8.5Posters2a.jpg"></a></li>
-	            <li><a href="#"><img  src="img/8.5Posters2a.jpg"></a></li>
-	            <li><a href="#"><img  src="img/618Posters3A.jpg"></a></li>
+				{{for home.list }}
+	            <li><a href="#"><img  src="img/{{:#parent.parent.data.home.url}}/{{:#data}}"></a></li>
+				{{/for}}
 	        </ul>
 	        <div class="arrow" id="arrow">
 	            <a href="javascript:;" class="prev" id="arrLeft"></a>
@@ -107,127 +153,122 @@
 	        </div>
 	    </div>
 	</div>
-	<div style="position: absolute; top: 1300px;width: 122%;margin-bottom: 500px;bottom: 500px;">
-		<div>
-			<h1 style="display: flex;justify-content: center; margin-bottom: 80px;letter-spacing:3px">海报设计</h1>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Posters1.jpg" ><img  src="img/Posters1.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Posters2.jpg"><img  src="img/Posters2.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Posters3.jpg" ><img  src="img/Posters3.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Posters4.jpg"><img  src="img/Posters4.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Posters5.jpg" ><img  src="img/Posters5.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Posters6.jpg"><img  src="img/Posters6.jpg" style="width: 100%;"></a>
-			</div>
-		</div>
+	
+	<div style="position: absolute; top: 81.25rem;width: 122%;margin-bottom: 37.5rem;bottom: 31.25rem;">
 		
-		<div>
-			<h1 style="display: flex;justify-content: center;margin-top: 80px; margin-bottom: 80px;letter-spacing:3px">主图图标</h1>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Posters7.jpg"><img  src="img/Posters7.jpg" style="width: 100%;"></a>
+		{{for middle }}
+		{{if type == 'histogram' }}
+			{{for list ~parentIndex1=#getIndex()}}
+			<div style="margin-bottom: 3.75rem;">
+				<div class="loading43"></div>
+				<h1 style="border: 0.0625rem dashed {{:title.color}};background-color: {{:title.background}};display: flex;justify-content: center; margin-bottom: 5rem;letter-spacing:0.1875rem">
+					<div class="cubeBox48Tem"></div>
+					<div style="height:5rem">{{include tmpl="#j-case1Tpl" /}}</div>
+				</h1>
+				
+				<!-- 标准样子 -->
+				{{if !type || type == 'default' }}
+				{{for list }}
+					<div id="middle{{:#parent.parent.data.url}}{{:~parentIndex1 }}{{:#index }}" class="container" style="border: 0.0625rem dashed {{:#parent.parent.data.title.color}};background-color: {{:#parent.parent.data.title.background}};width: 47.5%;margin-left: 2%;margin-bottom: 1.25rem; display: inline-block;height: {{:#parent.parent.data.height}}rem;">
+						<a href="details.html?details=img/{{:#parent.parent.data.url}}/{{:#data}}&middleId=middle{{:#parent.parent.data.url}}{{:~parentIndex1 }}{{:#index }}" >
+							<img src="img/{{:#parent.parent.data.url}}/{{:#data}}" alt="Your Image">
+						</a>
+					</div>
+				{{/for}}
+				{{/if}}
+				
+				<!-- 翻转卡片 -->
+				{{if type == 'overturn' }}
+				{{for list }}
+					<div id="middle{{:#parent.parent.data.url}}{{:~parentIndex1 }}{{:#index }}" class="container overturn-wrap25" style="border: 0.0625rem dashed {{:#parent.parent.data.title.color}};background-color: {{:#parent.parent.data.title.background}};width: 47.5%;margin-left: 2%;margin-bottom: 1.25rem; display: inline-block;height: {{:#parent.parent.data.height}}rem;">
+						<div class="box1">
+						    <div class="box"><img src="img/{{:#parent.parent.data.url}}/{{:#data.img}}" alt="Your Image"></div>
+						    <div class="mask" style="img/{{:#parent.parent.data.url}}/{{:#data.img}};">
+								
+								<a href="details.html?details=img/{{:#parent.parent.data.url}}/{{:#data.img}}&middleId=middle{{:#parent.parent.data.url}}{{:~parentIndex1 }}{{:#index }}" >
+								<div class="layer-mask"></div><div class="layer-mask-title">
+								{{if #data.direction }}
+								{{:#data.direction}}
+								{{/if}}
+								
+								{{if !#data.direction }}
+								没有介绍,再次点击查看详情
+								{{/if}}
+								</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				{{/for}}
+				{{/if}}
 			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Posters8.jpg" ><img  src="img/Posters8.jpg" style="width: 100%;"></a>
+			{{/for}}
+		{{/if}}
+		{{if type == 'marquee' }}
+			<div id="marquee{{:#parent.getIndex() }}">
+				<div class="loading43"></div>
+				<h1 style="border: 0.0625rem dashed {{:title.color}};background-color: {{:title.background}};display: flex;justify-content: center; margin-bottom: 5rem;letter-spacing:0.1875rem">
+					<div class="cubeBox48Tem"></div>
+					<div style="height:5rem">{{include tmpl="#j-case1Tpl" /}}</div>
+				</h1>
+				<marquee scrollamount="15">
+					{{for list }}
+						<div style="width: 30%;margin-left: 2%;margin-bottom: 1.25rem; display: inline-block;background:#FFFFFF;">
+							<a href="details.html?details=img/{{:#parent.parent.data.url}}/{{:#data}}&middleId=marquee{{:#parent.parent.getIndex() }}"" ><img  src="img/{{:#parent.parent.data.url}}/{{:#data}}" style="width: 100%;"></a>
+						</div>
+					{{/for}}
+				</marquee>
 			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Posters9.jpg"><img  src="img/Posters9.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Posters10.jpg"><img  src="img/Posters10.jpg" style="width: 100%;"></a>
-			</div>
-		</div>
+		{{/if}}
 		
-		<div>
-			<h1 style="display: flex;justify-content: center;margin-top: 80px; margin-bottom: 80px;letter-spacing:3px">首页设计</h1>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Details3.jpg" ><img  src="img/Details3.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Details4.jpg"><img  src="img/Details4.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Details5.jpg" ><img  src="img/Details5.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Details6.jpg"><img  src="img/Details6.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Details13.jpg"><img  src="img/Details13.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Details12.jpg" ><img  src="img/Details12.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Details11.jpg"><img  src="img/Details11.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Details9.jpg"><img  src="img/Details9.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Details10.jpg"><img  src="img/Details10.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Details8.jpg" ><img  src="img/Details8.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Details7.jpg"><img  src="img/Details7.jpg" style="width: 100%;"></a>
-			</div>
+		{{/for}}
+		<div style="display: flex;justify-content: center;flex-wrap: wrap;margin-top: 5rem;">
+			<a href="#top"  style="text-decoration: none;width: 10rem;height: 3rem;"><div style="border: 0.0625rem dashed red;background-color: #fae7d8;color: #000;;border-radius: 0.625rem;" class="btn56" data-text="返回顶部"></div></a>
+			<div style="width:100%"></div>
+			{{include tmpl="#j-case1Tp2" /}}
+			<div style="width:100%;height:2rem"></div>
+			<div class="yuan19"></div>
 		</div>
-		
-		<div>
-			<h1 style="display: flex;justify-content: center;margin-top: 80px; margin-bottom: 80px;letter-spacing:3px">详情页设计</h1>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Details17.jpg" ><img  src="img/Details17.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Details16.jpg" ><img  src="img/Details16.jpg" style="width: 100%;"></a>
-			</div>
-			
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px; display: inline-block;">
-				<a href="details.html?details=Details1.jpg" ><img  src="img/Details1.jpg" style="width: 100%;"></a>
-			</div>
-			<div style="width: 47%;margin-left: 2%;margin-bottom: 20px;display: inline-block;">
-				<a href="details.html?details=Details2.jpg"><img  src="img/Details2.jpg" style="width: 100%;"></a>
-			</div>
-			
+		 <div  style="height: 20rem;"></div>
+	</div>
+	</script>
+
+	<!-- 旋转的正方体组件 -->
+	<script type="text/x-jsrender" id="j-specCard1">
+		<div class="cube48">
+		  <div></div>
+		  <div></div>
+		  <div></div>
+		  <div></div>
+		  <div></div>
+		  <div></div>
 		</div>
-		
-		<div>
-			<h1 style="display: flex;justify-content: center;margin-top: 80px; margin-bottom: 80px;letter-spacing:3px">小精心</h1>
-			<marquee>
-				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;background:#FFFFFF;">
-					<a href="details.html?details=MG4109.jpg" ><img  src="img/MG4109.jpg" style="width: 100%;"></a>
-				</div>
-				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;background:#FFFFFF;">
-					<a href="details.html?details=MG4268.jpg" ><img  src="img/MG4268.jpg" style="width: 100%;"></a>
-				</div>
-				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;background:#FFFFFF;">
-					<a href="details.html?details=MG4399.jpg" ><img  src="img/MG4399.jpg" style="width: 100%;"></a>
-				</div>
-				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;background:#FFFFFF;">
-					<a href="details.html?details=MG4431.jpg" ><img  src="img/MG4431.jpg" style="width: 100%;"></a>
-				</div>
-				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;background:#FFFFFF;">
-					<a href="details.html?details=MG4439.jpg" ><img  src="img/MG4439.jpg" style="width: 100%;"></a>
-				</div>
-				<div style="width: 20%;margin-left: 2%;margin-bottom: 20px; display: inline-block;background:#FFFFFF;">
-					<a href="details.html?details=MG4547.jpg" ><img  src="img/MG4547.jpg" style="width: 100%;"></a>
-				</div>
-			</marquee>
+	</script>
+
+	<!-- 引导式详情按钮 -->
+	<script type="text/x-jsrender" id="j-case1Tpl">
+		<div class="btn58" style="width: {{:title.name.length * 2.5 +3 }}rem;">
+		  <span class="icon58"></span>
+		  <span class="btn-text58">{{:title.name}}</span>
 		</div>
-		
-		<div style="display: flex;justify-content: center;margin-top: 80px;height: 500px;">
-			<a href="#top"  style="text-decoration: none;"><div style="padding: 20px 100px;border: 1px solid #666666;border-radius: 10px;">返回顶部</div></a>
+	</script>
+
+	<!-- 牛顿摆效果 -->
+	<script type="text/x-jsrender" id="j-case1Tp2">
+		<div class="niudunbai59">
+		  <div class="niudunbai-dot-59"></div>
+		  <div class="niudunbai-dot-59"></div>
+		  <div class="niudunbai-dot-59"></div>
+		  <div class="niudunbai-dot-59"></div>
 		</div>
-	</div>	
-</body>
+	</script>
+
+	<!-- 圆点交互按钮 -->
+	<script type="text/x-jsrender" id="j-case1Tp3">
+		<div class="btn29">
+		<span class="btn29-bg">
+		</span>
+		<span class="btn29-span-text">查看详情</span>
+		</div>
+	</script>
 </html>

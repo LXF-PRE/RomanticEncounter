@@ -1,44 +1,596 @@
 @charset "UTF-8";
+
 /*初始化  reset*/
-blockquote,body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
-body,button,input,select,textarea{font:12px/1.5 "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;color: #666;}
-ol,ul{list-style:none}
-a{text-decoration:none}
-fieldset,img{border:0;vertical-align:top;}
-a,input,button,select,textarea{outline:none;}
-a,button{cursor:pointer;}
- 
-.wrap{
-    width:1200px;
-    margin:100px auto;
+blockquote,
+body,
+button,
+dd,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+td,
+textarea,
+th,
+ul {
+	margin: 0;
+	padding: 0
 }
+
+body,
+button,
+input,
+select,
+textarea {
+	font: 12px/1.5 "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+	color: #666;
+}
+
+ol,
+ul {
+	list-style: none
+}
+
+a {
+	text-decoration: none
+}
+
+fieldset,
+img {
+	border: 0;
+	vertical-align: top;
+}
+
+a,
+input,
+button,
+select,
+textarea {
+	outline: none;
+}
+
+a,
+button {
+	cursor: pointer;
+}
+
+.container {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	/* 隐藏超出容器的图片部分 */
+	border-radius: 0.625rem;
+}
+
+.container img {
+	max-width: 100%;
+	/* 图片宽度不超过容器宽度 */
+}
+
+.wrap {
+	width: 75rem;
+	margin: 6.25rem auto;
+}
+
 .slide {
-    height:500px;
-    position: relative;
+	height: 31.25rem;
+	position: relative;
 }
-.slide li{
-    position: absolute;
-    left:200px;
-    top:0;
+
+.slide li {
+	position: absolute;
+	left: 12.5rem;
+	top: 0;
 }
-.slide li img{
-    width:100%;
+
+.slide li img {
+	width: 100%;
 }
-.arrow{
-    opacity: 0;
+
+.arrow {
+	opacity: 0;
 }
-.prev,.next{
-    width:76px;
-    height:112px;
-    position: absolute;
-    top:50%;
-    margin-top:-56px;
-    background: url(../img/icon/箭头.png) no-repeat;
-    background-size: 70px 70px;
-    z-index: 99;
+
+.prev,
+.next {
+	width: 4.75rem;
+	height: 7rem;
+	position: absolute;
+	top: 50%;
+	margin-top: -3.5rem;
+	background: url(../img/icon/箭头.png) no-repeat;
+	background-size: 4.375rem 4.375rem;
+	z-index: 99;
 }
-.next{
-    right:0;
-    background-image: url(../img/icon/箭头.png);
-    background-size: 70px 70px;
+
+.next {
+	right: 0;
+	background-image: url(../img/icon/箭头.png);
+	background-size: 4.375rem 4.375rem;
+
+}
+
+/* 按钮 */
+.btn56 {
+	width: 100%;
+	height: 100%;
+	font-size: 1rem;
+	font-weight: 400;
+	letter-spacing: 0.125rem;
+	background: transparent;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	box-sizing: border-box;
+	transition: color 0.6s cubic-bezier(0.65, 0.05, 0.36, 1);
+	overflow: hidden;
+}
+
+.btn56:before {
+	content: '';
+	position: absolute;
+	width: 120%;
+	height: 160%;
+	border-radius: 50%;
+	display: block;
+	transition: box-shadow 0.6s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.btn56:after {
+	content: attr(data-text);
+	position: absolute;
+	display: block;
+	z-index: 5;
+}
+
+.btn56:hover {
+	color: #fff;
+}
+
+.btn56:hover:before {
+	box-shadow: inset 0 0 0 7.5rem rgba(222, 116, 204, 0.4);
+}
+
+.btn56:active {
+	transform: scale(0.99) translateY(1px);
+}
+
+/* //旋转的正方体组件 */
+.cubeBox48Tem {
+	position: relative;
+	transform-style: preserve-3d;
+	animation: cube48-eff 3s linear infinite;
+	margin-right: 2rem;
+}
+
+.cube48 {
+	width: 5rem;
+	height: 5rem;
+	transform-style: preserve-3d;
+	transform: rotateX(35deg) rotateY(0deg) rotateZ(45deg);
+}
+
+.cube48>div {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.cube48 div:nth-of-type(1) {
+	background-color: rgba(55, 175, 202, 0.4);
+	transform: translateZ(-22px) rotateY(180deg);
+}
+
+.cube48 div:nth-of-type(2) {
+	background-color: rgba(222, 116, 204, 0.4);
+	transform: rotateY(-270deg) translateX(50%);
+	transform-origin: top right;
+}
+
+.cube48 div:nth-of-type(3) {
+	background-color: rgba(222, 116, 204, 0.4);
+	transform: rotateY(270deg) translateX(-50%);
+	transform-origin: center left;
+}
+
+.cube48 div:nth-of-type(4) {
+	background-color: rgba(248, 156, 108, 0.4);
+	transform: rotateX(90deg) translateY(-50%);
+	transform-origin: top center;
+}
+
+.cube48 div:nth-of-type(5) {
+	background-color: rgba(248, 156, 108, 0.4);
+	transform: rotateX(-90deg) translateY(50%);
+	transform-origin: bottom center;
+}
+
+.cube48 div:nth-of-type(6) {
+	background-color: rgba(55, 175, 202, 0.4);
+	transform: translateZ(22px);
+}
+
+@keyframes cube48-eff {
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+
+/* 引导式详情按钮 */
+.btn58 {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+
+.icon58 {
+	width: 3rem;
+	height: 3rem;
+	padding: 1rem 1.5rem;
+	position: relative;
+	box-sizing: border-box;
+	background-color: rgba(222, 116, 204, 0.4);
+	display: block;
+	border-radius: 50%;
+	transition: 0.3s;
+}
+
+.icon58:before,
+.icon58:after {
+	content: '';
+	width: 0.1875rem;
+	height: 0.625rem;
+	background-color: #000000;
+	display: block;
+	transform: rotate(-45deg);
+}
+
+.icon58:after {
+	top: 0.875rem;
+	left: 1rem;
+	transform: rotate(45deg);
+}
+
+.btn-text58 {
+	font-size: 2rem;
+	color: #000000;
+	font-weight: bold;
+	display: block;
+	position: absolute;
+	left: 3rem;
+}
+
+.btn58:hover .icon58 {
+	width: 100%;
+	border-radius: 1rem;
+}
+
+.btn58:hover .icon58:before,
+.btn58:hover .icon58:after {
+	animation: move58eff 1.2s linear infinite;
+}
+
+@keyframes move58eff {
+	0% {
+		left: 1rem;
+	}
+
+	50% {
+		left: 1rem;
+	}
+
+	100% {
+		left: 1rem;
+	}
+}
+
+/* 牛顿摆效果 */
+.niudunbai59 {
+	width: 80px;
+	height: 80px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.niudunbai-dot-59 {
+	width: 20px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	transform-origin: center top;
+}
+
+.niudunbai-dot-59:before {
+	content: '';
+	width: 20px;
+	height: 20px;
+	position: relative;
+	border-radius: 50%;
+	background-color: rgba(248, 156, 108, 0.4);
+	background-image: linear-gradient(160deg, rgba(248, 156, 108, 0.4) 0%, rgba(248, 202, 156, 0.4) 100%);
+	box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.2);
+}
+
+.niudunbai-dot-59:after {
+	content: '';
+	width: 2px;
+	height: 60px;
+	position: absolute;
+	top: 0;
+	background-color: rgba(248, 156, 108, 0.4);
+	background-image: linear-gradient(160deg, rgba(248, 156, 108, 0.4) 0%, rgba(248, 202, 156, 0.4) 100%);
+}
+
+.niudunbai-dot-59:first-child {
+	animation: eff59 1.4s infinite;
+}
+
+.niudunbai-dot-59:last-child {
+	animation: eff592 1.4s infinite;
+}
+
+@keyframes eff59 {
+	0% {
+		transform: rotate(0deg);
+		animation-timing-function: ease-out;
+	}
+
+	25% {
+		transform: rotate(70deg);
+		animation-timing-function: ease-in;
+	}
+
+	50% {
+		transform: rotate(0deg);
+		animation-timing-function: linear;
+	}
+}
+
+@keyframes eff592 {
+	0% {
+		transform: rotate(0deg);
+		animation-timing-function: linear;
+	}
+
+	50% {
+		transform: rotate(0deg);
+		animation-timing-function: ease-out;
+	}
+
+	75% {
+		transform: rotate(-70deg);
+		animation-timing-function: ease-in;
+	}
+}
+
+
+/* 跳动的小球 */
+.yuan19 {
+	width: 20px;
+	height: 66px;
+	position: relative;
+}
+
+.yuan19:before {
+	content: "";
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	border-radius: 50%;
+	background-color: #333;
+	animation: yuan191 .5s ease infinite alternate;
+}
+
+@keyframes yuan191 {
+	0% {
+		top: 60px;
+		height: 5px;
+		border-radius: 50px 50px 25px 25px;
+		transform: scaleX(1.5);
+	}
+
+	50% {
+		height: 20px;
+		border-radius: 50%;
+		transform: scaleX(1);
+	}
+
+	100% {
+		top: 0;
+	}
+}
+
+.yuan19:after {
+	content: "";
+	width: 20px;
+	height: 4px;
+	border-radius: 50%;
+	position: absolute;
+	top: 62px;
+	animation: yuan192 .5s ease infinite alternate;
+}
+
+@keyframes yuan192 {
+	0% {
+		filter: blur(1px);
+		transform: scaleX(1.5);
+		background-color: rgba(0, 0, 0, 0.9);
+	}
+
+	50% {
+		transform: scaleX(1);
+		background-color: rgba(0, 0, 0, 0.6);
+	}
+
+	100% {
+		filter: blur(2px);
+		transform: scaleX(0.5);
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+}
+
+/* 丝滑的加载条动画 */
+.loading43 {
+	width: 100%;
+	height: 0.25rem;
+	border-radius: 0.125rem;
+	background-color: rgba(0, 0, 0, 0.2);
+	position: relative;
+}
+
+.loading43:after {
+	content: "";
+	height: 0.25rem;
+	border-radius: 0.125rem;
+	background-color: #fae7d8;
+	position: absolute;
+	animation: eff43 2.4s ease-in-out infinite;
+}
+
+@keyframes eff43 {
+	0% {
+		width: 0;
+	}
+
+	50% {
+		width: 100%;
+	}
+
+	100% {
+		width: 0;
+		right: 0;
+	}
+}
+
+/* 卡片翻转 */
+.overturn-wrap25 {
+	width: 100%;
+	height: 100%;
+	/* background-color: sandybrown; */
+	position: relative;
+}
+
+.overturn-wrap25 .box1 {
+	width: 100%;
+	height: 100%;
+	/* background-color: salmon; */
+	float: left;
+}
+
+.overturn-wrap25 .box {
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	font-size: 28px;
+	border-radius: 18px;
+	color: #fff;
+	position: absolute;
+	perspective: 1000px;
+	transition: 0.5s ease-in-out;
+}
+
+.overturn-wrap25 .mask {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	backface-visibility: hidden;
+	perspective: 62.5rem;
+	transform: rotateY(-180deg);
+	transition: 0.5s ease-in-out;
+}
+
+.overturn-wrap25 .mask .layer-mask {
+	background-color: #666;
+	opacity: 0.7;
+	width: 100%;
+	height: 100%;
+}
+
+.overturn-wrap25 .mask .layer-mask-title {
+	position: absolute;
+	left: 3%;
+	top: 2%;
+	width: 94%;
+	height: 96%;
+	color: #fff;
+	font-size: 2.25rem;
+	text-align: center;
+	line-height: 4rem;
+	font-family: '微软雅黑';
+	font-weight: bold;
+}
+
+.overturn-wrap25 .box1:hover .box {
+	transform: rotateY(-180deg);
+}
+
+.overturn-wrap25 .box1:hover .mask {
+	transform: rotateY(-360deg);
+}
+
+/* 圆点交互按钮 */
+.btn29 {
+	width: 100px;
+	height: 42px;
+	line-height: 42px;
+	position: relative;
+	cursor: pointer;
+}
+
+.btn29-bg {
+	width: 30px;
+	height: 30px;
+	display: block;
+	border-radius: 15px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background-color: #97E138;
+	transition: 0.24s;
+}
+
+.btn29-span-text {
+	width: 100%;
+	text-align: center;
+	display: block;
+	font-size: 16px;
+	font-weight: 700;
+	color: #056C00;
+	position: absolute;
+}
+
+.btn29:hover .btn29-bg {
+	width: 100%;
+	height: 42px;
+	border-radius: 21px;
 }
